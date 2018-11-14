@@ -68,6 +68,7 @@ QList<SearchResult> HandelsregisterAgentPlugin::Search(const QUrl &url, int read
         newSearchResult.AdId = id;
         newSearchResult.AdDescription = FixHtml(GetPartOfString(part,"<ul>", "</ul>").replace("<br>", ", "));
         newSearchResult.AdTitle = FixHtml(GetPartOfString(part,">", "<br>").replace("<ul>", ", "));
+        newSearchResult.AdTitle = GetPartOfString(newSearchResult.AdTitle, ", ","");
         // newSearchResult.AdEnd = QDateTime::currentDateTime();
         newSearchResult.AdStart = QDateTime::currentDateTime();
         newSearchResult.AdSeoUrl = "https://www.handelsregisterbekanntmachungen.de/de/skripte/hrb.php?rb_id=" + id;
@@ -230,6 +231,7 @@ QString HandelsregisterAgentPlugin::GetCustomerHelpMessage()
     // TODO MG/DM 14.11.2018: Wirklich? Bitte Funktionen machen, auch wenn die anderen nachgezogen werden müssen.
     QStringList infoText;
     infoText.append("NOURL"); // NOURL sorgt dafür, dass keine URL eingegeben werden muss
+    infoText.append("NOIGNORE"); // NOIGNORE sorgt dafür, dass der Bereich Ignorieren nicht angezeigt wird
     infoText.append("<select name=\"land\" label=\"Bundesländer\"><option value=\"\">-- Alle Bundesländer --</option><option value=\"bw\">Baden-Württemberg</option><option value=\"by\">Bayern</option><option value=\"be\">Berlin</option><option value=\"br\">Brandenburg</option><option value=\"hb\">Bremen</option><option value=\"hh\">Hamburg</option><option value=\"he\">Hessen</option><option value=\"mv\">Mecklenburg-Vorpommern</option><option value=\"ni\">Niedersachsen</option><option value=\"nw\">Nordrhein-Westfalen</option><option value=\"rp\">Rheinland-Pfalz</option><option value=\"sl\">Saarland</option><option value=\"sn\">Sachsen</option><option value=\"st\">Sachsen-Anhalt</option><option value=\"sh\">Schleswig-Holstein</option><option value=\"th\">Thüringen</option></select>");
     return infoText.join("");
 }
