@@ -1,0 +1,2 @@
+# AnzeigenChef-Handelsregister-Suchagent
+Suchagent für Handelsregisterbekanntmachungen
